@@ -10,6 +10,12 @@ public boolean check(List<Student> container, Student toSrc){
 
 }
 
+public boolean checkO_1(HashSet<Student> container, Student toSrc){
+
+    return container.contains(toSrc);
+
+}
+
 
 
 
@@ -59,6 +65,22 @@ void main() {
 
 
 
+//2.5.3
+    System.out.println("\n O(1): ");
+
+    HashSet<Student> studSet = new HashSet<Student>();
+    studSet.addAll(studList);
+
+    //b)
+        if(checkO_1(studSet, stud_check_B))
+            System.out.println("\n !!! " + stud_check_B.nume + " " + stud_check_B.prenume + " a fost gasit/a. ");
+        else
+            System.out.println("\n !!! " + stud_check_B.nume + " " + stud_check_B.prenume + " NU a fost gasit/a. ");
+    //c)
+        if(checkO_1(studSet, stud_check_C))
+            System.out.println("\n !!! " + stud_check_C.nume + " " + stud_check_C.prenume + " a fost gasit/a. ");
+        else
+            System.out.println("\n !!! " + stud_check_C.nume + " " + stud_check_C.prenume + " NU a fost gasit/a. ");
 
 
 
