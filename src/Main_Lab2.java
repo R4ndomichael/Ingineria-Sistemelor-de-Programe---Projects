@@ -50,13 +50,13 @@ void main() {
 
 
 //4
-    for(Integer elem : x){
+    for(int elem : x){
         if(elem <= p){
             xPlusYLimitedByP.add(elem);
         }
     }
 
-    for(Integer elem : y){
+    for(int elem : y){
         if(elem <= p){
             xPlusYLimitedByP.add(elem);
         }
