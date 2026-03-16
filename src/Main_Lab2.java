@@ -8,40 +8,61 @@ void main() {
     int p = 4;
     List<Integer> xPlusYLimitedByP = new ArrayList(); //d
 
+//1
     // liste
-    x.add(5);
-    x.add(6);
-    x.add(2);
-    x.add(9);
-    x.add(1);
+    Random rand = new Random();
 
-    y.add(0);
-    y.add(5);
-    y.add(2);
-    y.add(7);
-    y.add(4);
-    y.add(8);
-    y.add(6);
+    // init x
+    for(int i = 0; i < 5; i++){
+        x.add(rand.nextInt(11));
+    }
+
+    // init y
+    for(int i = 0; i < 7; i++){
+        y.add(rand.nextInt(11));
+    }
 
     // sortare
     Collections.sort(x);
     Collections.sort(y);
 
+    System.out.println("\n x = " + x + "   y = " + y);
+
     // adaugare
     xPlusY.addAll(x);
     xPlusY.addAll(y);
 
-    // afisare
     Collections.sort(xPlusY);
 
-    boolean containsElement = zSet.contains(x);
+    System.out.println("\n xPlusY: " + xPlusY);
 
+//2
     zSet.addAll(x);
-    zSet.addAll(y);
+    zSet.retainAll(y);
 
-    if(containsElement)
-        zSet.remove(x);
+    System.out.println("\n zSet: " + zSet);
+
+//3
+    xMinusY.addAll(x);
+    xMinusY.removeAll(y);
+
+    System.out.println("\n xMinusY: " + xMinusY);
 
 
-    System.out.println(xPlusY);
+//4
+    for(Integer elem : x){
+        if(elem <= p){
+            xPlusYLimitedByP.add(elem);
+        }
+    }
+
+    for(Integer elem : y){
+        if(elem <= p){
+            xPlusYLimitedByP.add(elem);
+        }
+    }
+
+    Collections.sort(xPlusYLimitedByP);
+
+    System.out.println("\n xPlusYLimitedByP: " + xPlusYLimitedByP);
 }

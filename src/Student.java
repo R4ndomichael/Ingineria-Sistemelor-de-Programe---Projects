@@ -1,3 +1,5 @@
+import java.util.List;
+
 public class Student {
 
     int numarMatricol;
@@ -15,4 +17,5 @@ public class Student {
     public String toString(){
         return "Student Data|  Nr. MATRICOL: " + numarMatricol + ", NUME: " + nume + ", PRENUME: " + prenume + ", FORMATIE_STUDIU: " + formatieDeStudiu + ". " ;
     }
+
 }
