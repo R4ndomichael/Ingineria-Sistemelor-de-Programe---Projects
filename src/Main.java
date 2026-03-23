@@ -1,88 +1,63 @@
+import java.io.IOException;
+import java.nio.file.*;
+import java.util.*;
 
+void main() throws IOException {
 
-public boolean check(List<Student> container, Student toSrc){
+    // import
+    List<String> input = Files.readAllLines(Path.of("src/studenti_in.txt"));
 
-    for(Student st : container) {
-        if (st.nume.equals(toSrc.nume) && st.prenume.equals(toSrc.prenume) && st.formatieDeStudiu.equals(toSrc.formatieDeStudiu))
-            return true;
-    }
-    return false;
+    List<Student> studList = new ArrayList<>();
 
-}
+    for(String line : input){
+        String[] data = line.split(",");
 
-public boolean checkO_1(HashSet<Student> container, Student toSrc){
+        Student s = new Student(Integer.parseInt(data[0]), data[1], data[2], data[3]);
 
-    return container.contains(toSrc);
-
-}
-
-
-
-
-void main() {
-    System.out.println();
-    System.out.println("Program output: ");
-
-    int i = 1;
-
-    List<Student> studList = new ArrayList();
-
-    Student stud1 = new Student(979, "Popescu", "George", "ISM_21/2");
-    Student stud2 = new Student(765, "Ionescu", "Ionut", "ISM_21/1");
-    Student stud3 = new Student(120, "Popa", "Alis", "TI_21/2");
-    Student stud4 = new Student(356, "Georgescu", "Paul", "C_21/2");
-    Student stud5 = new Student(646, "Florescu", "Dan", "C_21/2");
-
-    studList.add(stud1);
-    studList.add(stud2);
-    studList.add(stud3);
-    studList.add(stud4);
-    studList.add(stud5);
-
-//a)
-    System.out.println("Date studenti gasite: ");
-    for(Student st : studList){
-        System.out.println(">> " + i + ". " + st);
-        i++;
+        studList.add(s);
     }
 
-
-//b)
-    Student stud_check_B = new Student(120, "Popa", "Alis", "TI_21/2");
-
-    if(check(studList, stud_check_B))
-        System.out.println("\n !!! " + stud_check_B.nume + " " + stud_check_B.prenume + " a fost gasit/a. ");
-    else
-        System.out.println("\n !!! " + stud_check_B.nume + " " + stud_check_B.prenume + " NU a fost gasit/a. ");
-
-//c)
-    Student stud_check_C = new Student(112, "Popa", "Maria", "TI_21/1");
-
-    if(check(studList, stud_check_C))
-        System.out.println("\n !!! " + stud_check_C.nume + " " + stud_check_C.prenume + " a fost gasit/a. ");
-    else
-        System.out.println("\n !!! " + stud_check_C.nume + " " + stud_check_C.prenume + " NU a fost gasit/a. ");
+    Collections.sort(studList, Comparator.comparing(s -> s.nume));
 
 
+    System.out.println("Studenti sortati:");
+    for(Student s : studList){
+        System.out.println(s);
+    }
 
-//2.5.3
-    System.out.println("\n O(1): ");
+    List<String> output = new ArrayList();
+    for(Student s : studList){
+        output.add(s.toString());
+    }
 
-    HashSet<Student> studSet = new HashSet<Student>();
-    studSet.addAll(studList);
-
-    //b)
-        if(checkO_1(studSet, stud_check_B))
-            System.out.println("\n !!! " + stud_check_B.nume + " " + stud_check_B.prenume + " a fost gasit/a. ");
-        else
-            System.out.println("\n !!! " + stud_check_B.nume + " " + stud_check_B.prenume + " NU a fost gasit/a. ");
-    //c)
-        if(checkO_1(studSet, stud_check_C))
-            System.out.println("\n !!! " + stud_check_C.nume + " " + stud_check_C.prenume + " a fost gasit/a. ");
-        else
-            System.out.println("\n !!! " + stud_check_C.nume + " " + stud_check_C.prenume + " NU a fost gasit/a. ");
+    // export
+    Files.write(Path.of("src/studenti_out.txt"), output);
 
 
 
-    System.out.println();
+//3.5.3
+    List<String> output_FS_nume = new ArrayList<>();
+
+    //formatie studiu
+    Collections.sort(studList, Comparator.comparing(s -> s.formatieDeStudiu));
+    output_FS_nume.add("\n Dupa formatie de studiu: \n");
+
+    System.out.println("\n Studenti sortati dupa formatie:");
+    for(Student s : studList){
+        System.out.println(s);
+        output_FS_nume.add(s.toString());
+    }
+
+    //nume
+    Collections.sort(studList, Comparator.comparing(s -> s.prenume));
+    output_FS_nume.add("\n Dupa nume: \n");
+
+    System.out.println("\n Studenti sortati dupa nume:");
+    for(Student s : studList){
+        System.out.println(s);
+        output_FS_nume.add(s.toString());
+    }
+
+    // export
+    Files.write(Path.of("src/studenti_out_sorted.txt"), output_FS_nume);
 }
