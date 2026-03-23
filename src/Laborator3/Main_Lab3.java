@@ -15,4 +15,5 @@ void main() throws IOException {
         System.out.print("[" + w.trim() + "] \n");
     }
 
+
 }
