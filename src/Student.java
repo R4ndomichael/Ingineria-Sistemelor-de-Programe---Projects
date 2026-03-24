@@ -14,6 +14,14 @@ public class Student {
         formatieDeStudiu = formatieDeStudiu_in;
     }
 
+    public String getNume(){
+        return this.nume;
+    }
+
+    public String getFormatieDeStudiu(){
+        return this.formatieDeStudiu;
+    }
+
     public String toString(){
         //return "Student Data|  Nr. MATRICOL: " + numarMatricol + ", NUME: " + nume + ", PRENUME: " + prenume + ", FORMATIE_STUDIU: " + formatieDeStudiu + ". " ;
         return "" + numarMatricol + ", " + nume + ", " + prenume + ", " + formatieDeStudiu;

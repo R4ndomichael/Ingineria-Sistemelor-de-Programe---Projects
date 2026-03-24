@@ -5,7 +5,7 @@ import java.util.*;
 void main() throws IOException {
 
     // import
-    List<String> input = Files.readAllLines(Path.of("src/studenti_in.txt"));
+    List<String> input = Files.readAllLines(Path.of("src/Laborator3/studenti_in.txt"));
 
     List<Student> studList = new ArrayList<>();
 
@@ -31,7 +31,7 @@ void main() throws IOException {
     }
 
     // export
-    Files.write(Path.of("src/studenti_out.txt"), output);
+    Files.write(Path.of("src/Laborator3/sstudenti_out.txt"), output);
 
 
 
@@ -58,6 +58,10 @@ void main() throws IOException {
         output_FS_nume.add(s.toString());
     }
 
+//    studList.sort{
+//        Comparator.comparing(Student::getFormatieDeStudiu).thenComparing(Student::getNume);
+//    }
+
     // export
-    Files.write(Path.of("src/studenti_out_sorted.txt"), output_FS_nume);
+    Files.write(Path.of("src/Laborator3/sstudenti_out_sorted.txt"), output_FS_nume);
 }
