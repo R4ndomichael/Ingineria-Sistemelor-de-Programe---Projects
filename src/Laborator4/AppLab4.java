@@ -20,6 +20,8 @@ public class AppLab4 {
 
     public static void main(String[] args) throws IOException {
 
+        int i = 1;
+
         HashMap<String, Integer> varste = new HashMap<>();
         varste.put("Ioan", 21);
         varste.put("Maria", 22);
@@ -42,15 +44,27 @@ public class AppLab4 {
         AfisareMap(varste);
 
         // Total Hashmap
-        HashMap<String, Tanar> tineri = null;
+        HashMap<String, Tanar> tineri = new HashMap<>();
 
         System.out.println("\n >> Chei gasite: ");
 
+        for(String key : varste.keySet()) {
+
+            int age = varste.get(key);
+            String address = adrese.get(key);
+
+            Tanar t = new Tanar(key, age, address);
+
+            tineri.put(key, t);
+        }
+
+        // Afisare
         for(Object key : tineri.keySet()) { //parcurgere Map folosind for-each
             Object value = tineri.get(key);
 
-            System.out.println(key + ": " + value);
-        }
+            System.out.println(i + ". " + value);
+            i++;
+        }i = 0;
 
     }
 }
