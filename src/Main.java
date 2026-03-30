@@ -34,6 +34,41 @@ void main() throws IOException {
     Files.write(Path.of("src/Laborator3/sstudenti_out.txt"), output);
 
 
+    // -----------------4.5.2--------------------------------
+
+            HashMap<Integer, Student> studentiMap = new HashMap<>();
+
+            for(Student s : studList){
+                studentiMap.put(s.numarMatricol, s);    // populare
+            }
+
+
+            List<String> note = Files.readAllLines(Path.of("src/Laborator4/note_anon.txt"));
+
+            for(String line : note){
+
+                String[] data = line.split(",");
+
+                int nr = Integer.parseInt(data[0]);
+                float nota = Float.parseFloat(data[1]);
+
+                Student s = studentiMap.get(nr);
+
+                if(s != null){
+                    s.setNota(nota);
+                }
+            }
+
+            // afisare
+            System.out.println("\n ----------------AFISARE MAP------------------");
+
+            for(Student s : studentiMap.values()){
+                System.out.println(s);
+            }
+
+            System.out.println("---------------------------------------------");
+
+    // ------------------------------------------------------
 
 //3.5.3
     List<String> output_FS_nume = new ArrayList<>();
