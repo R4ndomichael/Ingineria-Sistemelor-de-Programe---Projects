@@ -2,6 +2,25 @@ import java.io.IOException;
 import java.nio.file.*;
 import java.util.*;
 
+
+static double gasesteNota(String prenume, String nume, Map<Integer, Student> studentiMap){
+    HashMap<String, Student> map = new HashMap<>();
+
+    for(Student s : studentiMap.values()){
+        String key = s.prenume + "-" + s.nume;
+        map.put(key, s);
+    }
+
+    Student s = map.get(prenume + "-" + nume);
+
+    if(s == null)
+        return 0.0;
+
+    return s.nota;
+}
+
+
+
 void main() throws IOException {
 
     // import
@@ -67,6 +86,18 @@ void main() throws IOException {
             }
 
             System.out.println("---------------------------------------------");
+
+
+    //  >>>>>>>>>>>> 4.5.3 >>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+    double notaM = gasesteNota("Bianca", "Popescu", studentiMap);
+    double notaN = gasesteNota("Ioan", "Popa", studentiMap);
+
+    System.out.println("Nota Bianca Popescu: " + notaM);
+    System.out.println("Nota Ioan Popa: " + notaN);
+
+
+    System.out.println("---------------------------------------------");
 
     // ------------------------------------------------------
 
