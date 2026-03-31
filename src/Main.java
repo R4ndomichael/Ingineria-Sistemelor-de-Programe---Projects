@@ -55,7 +55,7 @@ void main() throws IOException {
 
     // -----------------4.5.2--------------------------------
 
-            HashMap<Integer, Student> studentiMap = new HashMap<>();
+            Map<Integer, Student> studentiMap = new HashMap<>();
 
             for(Student s : studList){
                 studentiMap.put(s.numarMatricol, s);    // populare
@@ -110,7 +110,7 @@ void main() throws IOException {
 
     System.out.println("\n Studenti sortati dupa formatie:");
     for(Student s : studList){
-        System.out.println(s);
+        //System.out.println(s);
         output_FS_nume.add(s.toString());
     }
 
@@ -120,7 +120,7 @@ void main() throws IOException {
 
     System.out.println("\n Studenti sortati dupa nume:");
     for(Student s : studList){
-        System.out.println(s);
+        //System.out.println(s);
         output_FS_nume.add(s.toString());
     }
 
