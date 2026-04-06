@@ -25,30 +25,8 @@ public class IntCalculator {
         return state;
     }
 
-    void clear(){
+    public IntCalculator clear(){
         state = 0;
-    }
-
-}
-
-class AdvancedCalculator extends IntCalculator{
-
-    public AdvancedCalculator(int newState) {
-        super(newState);
-    }
-
-    public IntCalculator divide(int a){
-        state /= a;
-        return this;
-    }
-
-    public IntCalculator power(int a){
-        state ^= a;
-        return this;
-    }
-
-    public IntCalculator sqrt(int a){
-        state = (int) Math.pow(state, 1.0 / a);
         return this;
     }
 
