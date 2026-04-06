@@ -20,6 +20,24 @@ static double gasesteNota(String prenume, String nume, Map<Integer, Student> stu
 }
 
 
+// Lab 5
+static void writeToFile(String filename, Collection<? extends Student> studenti) {
+
+    try (PrintWriter writer = new PrintWriter(filename)) {
+
+        for (Student s : studenti) {
+            writer.println(s);
+        }
+
+    }
+
+    catch (Exception e) {
+        e.printStackTrace();
+    }
+}
+
+
+
 
 void main() throws IOException {
 
@@ -108,7 +126,7 @@ void main() throws IOException {
     Collections.sort(studList, Comparator.comparing(s -> s.formatieDeStudiu));
     output_FS_nume.add("\n Dupa formatie de studiu: \n");
 
-    System.out.println("\n Studenti sortati dupa formatie:");
+    //System.out.println("\n Studenti sortati dupa formatie:");
     for(Student s : studList){
         //System.out.println(s);
         output_FS_nume.add(s.toString());
@@ -118,7 +136,7 @@ void main() throws IOException {
     Collections.sort(studList, Comparator.comparing(s -> s.prenume));
     output_FS_nume.add("\n Dupa nume: \n");
 
-    System.out.println("\n Studenti sortati dupa nume:");
+    //System.out.println("\n Studenti sortati dupa nume:");
     for(Student s : studList){
         //System.out.println(s);
         output_FS_nume.add(s.toString());
@@ -130,4 +148,18 @@ void main() throws IOException {
 
     // export
     Files.write(Path.of("src/Laborator3/sstudenti_out_sorted.txt"), output_FS_nume);
+
+
+    // ----------------------------------- LAB 5 -------------------------------------------
+
+    System.out.println("\n Laborator 5: \n");
+
+    Set<StudentBursieri> bursieri = new HashSet<>();
+
+    bursieri.add(new StudentBursieri(1025,"Andrei","Popa","ISM141/2",8.70,725.50));
+    bursieri.add(new StudentBursieri(1024,"Ioan","Mihalcea","ISM141/1",9.80,801.10));
+    bursieri.add(new StudentBursieri(1026,"Anamaria","Prodan","TI131/1",8.90,745.50));
+    bursieri.add(new StudentBursieri(1029,"Bianca","Popescu","TI131/1",9.10,780.80));
+
+    writeToFile("src/Laborator5/bursieri_out.txt", bursieri);
 }
