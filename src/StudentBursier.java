@@ -2,10 +2,10 @@ import java.util.Objects;
 
 public class StudentBursier extends Student {
     double cuantumBursa;
-    public StudentBursier(int numarMatricol, String prenume, String nume, String
-            formatieDeStudiu, double nota, double bursa) {
-        super(numarMatricol, prenume, nume, formatieDeStudiu);
-        super.nota = nota;
+    public StudentBursier(int numarMatricol, String prenume, String nume,
+                          String formatieDeStudiu, double nota, double bursa) {
+
+        super(numarMatricol, prenume, nume, formatieDeStudiu, nota);
         this.cuantumBursa = bursa;
     }
     public double getCuantumBursa() {

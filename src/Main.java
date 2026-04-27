@@ -7,7 +7,7 @@ static double gasesteNota(String prenume, String nume, Map<Integer, Student> stu
     HashMap<String, Student> map = new HashMap<>();
 
     for(Student s : studentiMap.values()){
-        String key = s.prenume + "-" + s.nume;
+        String key = s.getPrenume() + "-" + s.getNume();
         map.put(key, s);
     }
 
@@ -16,7 +16,7 @@ static double gasesteNota(String prenume, String nume, Map<Integer, Student> stu
     if(s == null)
         return 0.0;
 
-    return s.nota;
+    return s.getNota();
 }
 
 
@@ -49,12 +49,12 @@ void main() throws IOException {
     for(String line : input){
         String[] data = line.split(",");
 
-        Student s = new Student(Integer.parseInt(data[0]), data[1], data[2], data[3]);
+        Student s = new Student(Integer.parseInt(data[0]), data[1], data[2], data[3], 0.0);
 
         studList.add(s);
     }
 
-    Collections.sort(studList, Comparator.comparing(s -> s.nume));
+    Collections.sort(studList, Comparator.comparing(Student::getNume));
 
 
     System.out.println("Studenti sortati:");
@@ -76,7 +76,7 @@ void main() throws IOException {
             Map<Integer, Student> studentiMap = new HashMap<>();
 
             for(Student s : studList){
-                studentiMap.put(s.numarMatricol, s);    // populare
+                studentiMap.put(s.getNumarMatricol(), s);    // populare
             }
 
 
@@ -92,7 +92,15 @@ void main() throws IOException {
                 Student s = studentiMap.get(nr);
 
                 if(s != null){
-                    s.setNota(nota);
+                    Student nou = new Student(
+                            s.getNumarMatricol(),
+                            s.getPrenume(),
+                            s.getNume(),
+                            s.getFormatieDeStudiu(),
+                            nota
+                    );
+
+                    studentiMap.put(nr, nou);
                 }
             }
 
@@ -123,7 +131,7 @@ void main() throws IOException {
     List<String> output_FS_nume = new ArrayList<>();
 
     //formatie studiu
-    Collections.sort(studList, Comparator.comparing(s -> s.formatieDeStudiu));
+    Collections.sort(studList, Comparator.comparing(Student::getFormatieDeStudiu));
     output_FS_nume.add("\n Dupa formatie de studiu: \n");
 
     //System.out.println("\n Studenti sortati dupa formatie:");
@@ -133,7 +141,7 @@ void main() throws IOException {
     }
 
     //nume
-    Collections.sort(studList, Comparator.comparing(s -> s.prenume));
+    Collections.sort(studList, Comparator.comparing(Student::getPrenume));
     output_FS_nume.add("\n Dupa nume: \n");
 
     //System.out.println("\n Studenti sortati dupa nume:");
@@ -151,9 +159,6 @@ void main() throws IOException {
 
 
     // ----------------------------------- LAB 5 -------------------------------------------
-
-    System.out.println("\n Laborator 5: \n");
-
     Set<StudentBursier> bursieri = new HashSet<>();
 
     bursieri.add(new StudentBursier(1025,"Andrei","Popa","ISM141/2",8.70,725.50));
@@ -162,4 +167,15 @@ void main() throws IOException {
     bursieri.add(new StudentBursier(1029,"Bianca","Popescu","TI131/1",9.10,780.80));
 
     writeToFile("src/Laborator5/bursieri_out.txt", bursieri);
+
+    // ----------------------------------- LAB 7 -------------------------------------------
+    Set<Student> studentiSet = new HashSet<>(studList);
+
+    Set<Student> studentiNoi = Student.imparteInDouaFormatii(studentiSet, "TI 211_1", "TI 211_2");
+
+    System.out.println("\n---- STUDENTI DUPA IMPARTIRE ----");
+
+    for(Student s : studentiNoi){
+        System.out.println(s);
+    }
 }

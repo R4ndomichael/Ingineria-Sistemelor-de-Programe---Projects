@@ -44,11 +44,11 @@ public class AplicatieCuBursa {
                 if (cmp != 0) return cmp;
 
                 // 3. prenume
-                cmp = s1.prenume.compareTo(s2.prenume);
+                cmp = s1.getPrenume().compareTo(s2.getPrenume());
                 if (cmp != 0) return cmp;
 
                 // 4. nota
-                cmp = Double.compare(s1.nota, s2.nota);
+                cmp = Double.compare(s1.getNota(), s2.getNota());
                 if (cmp != 0) return cmp;
 
                 // 5. bursa
