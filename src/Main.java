@@ -1,3 +1,9 @@
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
 import java.io.IOException;
 import java.nio.file.*;
 import java.util.*;
@@ -36,6 +42,70 @@ static void writeToFile(String filename, Collection<? extends Student> studenti)
     }
 }
 
+
+
+// 8.5.4 a — Scriere studenti in xlsx
+static void writeToXls(Set<Student> studenti, String fileName) {
+    XSSFWorkbook workbook2 = new XSSFWorkbook();
+    XSSFSheet sheet2 = workbook2.createSheet();
+
+    int rowNum = 0;
+
+    // rand header
+    Row header = sheet2.createRow(rowNum++);
+    header.createCell(0).setCellValue("Nr Matricol");
+    header.createCell(1).setCellValue("Prenume");
+    header.createCell(2).setCellValue("Nume");
+    header.createCell(3).setCellValue("Formatie");
+    header.createCell(4).setCellValue("Nota");
+
+    // randuri studenti
+    for (Student st : studenti) {
+        Row row2 = sheet2.createRow(rowNum++);
+        int colNum = 0;
+        row2.createCell(colNum++).setCellValue(st.getNumarMatricol());
+        row2.createCell(colNum++).setCellValue(st.getPrenume());
+        row2.createCell(colNum++).setCellValue(st.getNume());
+        row2.createCell(colNum++).setCellValue(st.getFormatieDeStudiu());
+        row2.createCell(colNum++).setCellValue(st.getNota());
+    }
+
+    try {
+        FileOutputStream out = new FileOutputStream(fileName);
+        workbook2.write(out);
+        out.close();
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+}
+
+// 8.5.4 b — Citire studenti din xlsx
+static List<Student> readFromXls(String fileName) {
+    List<Student> studentsFromXls = new ArrayList<>();
+
+    try (InputStream fis = new FileInputStream(fileName)) {
+        Workbook workbook = new XSSFWorkbook(fis);
+        Sheet sheet = workbook.getSheetAt(0);
+
+        for (Row row : sheet) {
+            // sarim peste header
+            if (row.getRowNum() == 0) continue;
+
+            int numarMatricol = (int) row.getCell(0).getNumericCellValue();
+            String prenume = row.getCell(1).getStringCellValue();
+            String nume = row.getCell(2).getStringCellValue();
+            String formatie = row.getCell(3).getStringCellValue();
+            double nota = row.getCell(4).getNumericCellValue();
+
+            studentsFromXls.add(new Student(numarMatricol, prenume, nume, formatie, nota));
+        }
+
+    } catch (IOException ex) {
+        ex.printStackTrace();
+    }
+
+    return studentsFromXls;
+}
 
 
 
@@ -177,5 +247,20 @@ void main() throws IOException {
 
     for(Student s : studentiNoi){
         System.out.println(s);
+    }
+
+    // ----------------------------------- LAB 8 -------------------------------------------
+
+    System.out.println("\n ---------------------------------------------");
+
+    // 8.5.4 a
+    String xlsFileName = "laborator8_students.xlsx";
+    writeToXls(studentiNoi, xlsFileName);
+
+    // 8.5.4 b
+    List<Student> studentsFromXls = readFromXls(xlsFileName);
+    System.out.println("\n Studenti cititi din xlsx:");
+    for(Student st: studentsFromXls) {
+        System.out.println(st);
     }
 }
