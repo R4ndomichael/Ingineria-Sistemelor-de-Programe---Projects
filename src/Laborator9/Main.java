@@ -97,7 +97,7 @@ public class Main {
                 .findFirst();
 
         if(cuvant.isPresent()) {
-            System.out.println("\nCuvant gasit: " + cuvant.get());
+            System.out.println("\nCuvant gasit:" + cuvant.get());
         }
 
     }
