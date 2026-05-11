@@ -10,7 +10,7 @@ class AplicatieCuBursaTest {
     @Test
     void sortTest1() {
 
-        // arrange
+        // start
         List<StudentBursier> lista = app.genereaza();
 
         // act
