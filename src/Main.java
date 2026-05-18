@@ -178,4 +178,72 @@ void main() throws IOException {
     for(Student s : studentiNoi){
         System.out.println(s);
     }
+
+    // ----------------------------------- LAB 9 -------------------------------------------
+
+    System.out.println("\n================ LAB 9 ================\n");
+
+    List<Student> studentiCuNote = Arrays.asList(
+            new Student(1025,"Andrei","Popa","ISM141/2", 8.70),
+            new Student(1024,"Ioan","Mihalcea","ISM141/1", 10),
+            new Student(1026,"Anamaria","Prodan","TI131/1", 8.90),
+            new Student(1029,"Bianca","Popescu","TI131/1", 10),
+            new Student(1030,"Maria","Pana","TI131/2", 4.10),
+            new Student(1031,"Gabriela","Mohanu","TI131/2", 7.33),
+            new Student(1032,"Marius","Nasta","TI131/2", 3.20),
+            new Student(1033,"Marius","Nasta","TI131/1", 5.12),
+            new Student(1034,"Andrei","Dobrescu","TI131/2", 2.22)
+    );
+
+
+// a) studenti cu nota 10
+    System.out.println("a) Studenti cu nota 10:");
+
+    studentiCuNote.stream()
+            .filter(s -> s.getNota() == 10)
+            .forEach(System.out::println);
+
+
+// b) studenti cu nota sub 5
+    System.out.println("\nb) Studenti cu nota sub 5:");
+
+    studentiCuNote.stream()
+            .filter(s -> s.getNota() < 5)
+            .forEach(System.out::println);
+
+
+// c) studenti cu nota sub 4 devin studenti cu nota 4
+    System.out.println("\nc) Studenti modificati:");
+
+    List<Student> studentiModificati = studentiCuNote.stream()
+            .map(s -> {
+                if(s.getNota() < 4) {
+                    return new Student(
+                            s.getNumarMatricol(),
+                            s.getPrenume(),
+                            s.getNume(),
+                            s.getFormatieDeStudiu(),
+                            4
+                    );
+                }
+
+                return s;
+            })
+            .collect(Collectors.toList());
+
+    studentiModificati.forEach(System.out::println);
+
+
+// d) suma notelor
+    double suma = studentiCuNote.stream()
+            .map(Student::getNota)
+            .reduce(0.0, (a, b) -> a + b);
+
+    System.out.println("\nd) Suma notelor: " + suma);
+
+
+// e) media notelor
+    double media = suma / studentiCuNote.size();
+
+    System.out.println("e) Media notelor: " + media);
 }
