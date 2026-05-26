@@ -1,0 +1,5 @@
+1025, Popa, Andrei, ISM141/2, 8.7
+1024, Mihalcea, Ioan, ISM141/1, 10.0
+1026, Prodan, Anamaria, TI131/1, 8.9
+1029, Popescu, Bianca, TI131/1, 10.0
+1029, Pana, Maria, TI131/2, 4.1
