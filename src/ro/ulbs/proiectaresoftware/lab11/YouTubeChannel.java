@@ -1,11 +1,10 @@
-package Laborator11;
+package ro.ulbs.proiectaresoftware.lab11;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class YouTubeChannel implements Subject {
     private String channelName;
-    private String latestVideo;
     private List<Observer> observers = new ArrayList<>();
 
     public YouTubeChannel(String channelName) {
@@ -25,21 +24,15 @@ public class YouTubeChannel implements Subject {
     @Override
     public void notifyObservers() {
         for (Observer o : observers) {
-            o.update(this);
+            o.update(channelName + " uploaded a new video: " + latestVideo);
         }
     }
 
-    public void uploadVideo(String videoTitle) {
-        this.latestVideo = videoTitle;
-        System.out.println("\n[YouTubeChannel] Video incarcat: \"" + videoTitle + "\"");
+    private String latestVideo;
+
+    public void uploadVideo(String title) {
+        System.out.println("{" + channelName + "} uploaded a new video: " + title);
+        this.latestVideo = title;
         notifyObservers();
-    }
-
-    public String getChannelName() {
-        return channelName;
-    }
-
-    public String getLatestVideo() {
-        return latestVideo;
     }
 }

@@ -1,4 +1,4 @@
-package Laborator11;
+package ro.ulbs.proiectaresoftware.lab11;
 
 public interface Subject {
     void register(Observer observer);
