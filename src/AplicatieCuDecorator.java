@@ -12,6 +12,7 @@ public class AplicatieCuDecorator {
                 new Student(1029, "Maria",    "Pana",      "TI131/2",   4.10)
         );
 
+
         Exporter exporter = new Exporter();
 
         System.out.println("=== Export in consola cu timer ===");
