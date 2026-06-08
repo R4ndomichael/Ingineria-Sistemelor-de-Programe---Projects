@@ -9,7 +9,9 @@
       "Bash(Get-ChildItem -Path \"D:\\\\Facultate\\\\Teme\\\\IntelliJ\\\\Ing_Sist_Prog\\\\Data_Project\\\\Laborator11_starter\" -Recurse)",
       "Bash(Select-Object -ExpandProperty FullName)",
       "Bash(find \"D:\\\\Facultate\\\\Teme\\\\IntelliJ\\\\Ing_Sist_Prog\\\\Data_Project\\\\Laborator11_starter\" -type f | head -100)",
-      "Bash(Get-ChildItem -Path \"D:\\\\Facultate\\\\Teme\\\\IntelliJ\\\\Ing_Sist_Prog\\\\Data_Project\\\\Laborator12_starter\" -Recurse)"
+      "Bash(Get-ChildItem -Path \"D:\\\\Facultate\\\\Teme\\\\IntelliJ\\\\Ing_Sist_Prog\\\\Data_Project\\\\Laborator12_starter\" -Recurse)",
+      "Bash(powershell -command \"Expand-Archive -Path 'Laborator12_starter.zip' -DestinationPath 'Laborator12_starter' -Force\")",
+      "PowerShell(New-Item -ItemType Directory -Force \"D:\\\\Facultate\\\\Ing Sist Prog\\\\ISP_Laborator\\\\src\\\\ro\\\\ulbs\\\\proiectaresoftware\\\\lab12\")"
     ]
   }
 }
