@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(Get-ChildItem -Path \"C:\\\\Users\" -Recurse -Filter \"AplicatieCuStrategy.java\" -ErrorAction SilentlyContinue)",
+      "Bash(Select-Object FullName)",
+      "Bash(python -c ' *)",
+      "Bash(pip install *)",
+      "PowerShell(pip install pypdf 2>&1)",
+      "Bash(Get-ChildItem -Path \"D:\\\\Facultate\\\\Teme\\\\IntelliJ\\\\Ing_Sist_Prog\\\\Data_Project\\\\Laborator11_starter\" -Recurse)",
+      "Bash(Select-Object -ExpandProperty FullName)",
+      "Bash(find \"D:\\\\Facultate\\\\Teme\\\\IntelliJ\\\\Ing_Sist_Prog\\\\Data_Project\\\\Laborator11_starter\" -type f | head -100)",
+      "Bash(Get-ChildItem -Path \"D:\\\\Facultate\\\\Teme\\\\IntelliJ\\\\Ing_Sist_Prog\\\\Data_Project\\\\Laborator12_starter\" -Recurse)"
+    ]
+  }
+}
